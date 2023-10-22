@@ -1,43 +1,17 @@
 <script setup lang="ts">
-import {reactive, ref, toRefs} from "vue";
+import {reactive, ref} from "vue";
 import userApi from '../util/api/user/index.ts'
-import {ElAlert, ElMessage, ElNotification} from 'element-plus'
-
-// 登录用户模板
-interface loginUser {
-  userName: String,
-  password: String
-}
-// 注册用户模板
-interface registerUser {
-  userName: String,
-  password: String,
-  email:String,
-  phonenumber:String,
-  sex:number,
-  code:String,
-}
+import {ElMessage, ElNotification} from 'element-plus'
+import {useRouter} from "vue-router";
+import router from "../router";
 // 登录信息
-const user = reactive<loginUser>({
-  userName:"",
-  password:""
-})
+const user = reactive<loginUser>({})
 
 // 注册信息
-const registerUserData = reactive<registerUser>({
-  userName: "",
-  password: "",
-  email:"",
-  phonenumber:"",
-  sex:undefined,
-  code:""
-})
+const registerUserData = reactive<registerUser>({})
 
 // 登录接口
 async function login(){
-  console.log(user)
-  console.log()
-  console.log(registerVisible.value)
   if(user.userName=='' || user.password==''){
     ElNotification.error({
       title: '登录提示',
@@ -48,10 +22,12 @@ async function login(){
     const res = await userApi.login(user)
     window.sessionStorage.setItem("token",res.token)
     ElNotification.success({
-      title: '登录提示',
-      message: '登录成功,即将为你跳转到主界面',
-      showClose: false,
-    })
+        title: '登录提示',
+        message: '登录成功,即将为你跳转到主界面',
+        showClose: false,
+      })
+    console.log(123123)
+    router.push("/Index")
   }
 }
 
@@ -143,8 +119,11 @@ const registerVisible = ref<boolean>(false)
     <transition name="el-zoom-in-top">
       <div v-show="loginVisible">
         <div class="login-form" >
+
           <div class="login-text">
+
             登录
+            <img src="/vite.svg" class="logo" alt="Vite logo" />
           </div>
         </div>
         <div>
@@ -184,6 +163,7 @@ const registerVisible = ref<boolean>(false)
           <div class="login-form" >
             <div class="register-text">
               注册
+              <img src="/vite.svg" class="logo" alt="Vite logo" />
             </div>
           </div>
           <div>
@@ -228,12 +208,12 @@ const registerVisible = ref<boolean>(false)
             <div style="padding-top: 20px">
               <el-row :justify="'center'">
                 <el-button
-                  style="background-color: #723dbd;color: white;width: 200px;"
+                  style="background-color: #6ed56a;color: white;width: 200px;"
                   size="large"
                   @click="register">注册</el-button>
               </el-row>
               <el-row :justify="'center'">
-                <el-link :underline="false" style="padding-top: 20px;padding-left: 450px;width: 200px;font-size: medium" type="success" @click="registerVisible=false;loginVisible=true">去登录</el-link>
+                <el-link :underline="false" style="padding-left: 450px;width: 200px;font-size: medium;color: #5849a9" @click="registerVisible=false;loginVisible=true">去登录</el-link>
               </el-row>
             </div>
           </div>
@@ -246,6 +226,7 @@ const registerVisible = ref<boolean>(false)
 
 <style lang="scss" scoped>
 .container{
+  background-image: url("../assets/background.svg");
   height: 100vh;
   background-color: #ededed;
   .login-form{
@@ -257,7 +238,7 @@ const registerVisible = ref<boolean>(false)
       padding-top: 160px;
       padding-bottom: 30px;
       color: #6e6e6e;
-      font-family: "苹方 常规",fangsong;
+      font-family: 黑体,fangsong;
       font-size: 40px;
     }
     .login-text{
@@ -265,7 +246,7 @@ const registerVisible = ref<boolean>(false)
       padding-top: 200px;
       padding-bottom: 30px;
       color: #6e6e6e;
-      font-family: "苹方 常规",fangsong;
+      font-family: 黑体,fangsong;
       font-size: 40px;
     }
   }

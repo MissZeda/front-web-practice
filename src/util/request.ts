@@ -5,7 +5,7 @@ const baseUrl: string = "http://127.0.0.1:8088";
 
 const request = axios.create({
   baseURL: baseUrl,
-  timeout: 5000
+  timeout: 10000
 })
 
 request.interceptors.request.use(config => {
@@ -22,9 +22,13 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(res => {
   if(res.data.code===50001){
     ElNotification.error(res.data.msg)
-    return ;
+    return Promise.reject(res.data.msg);
   }
     return res.data;
+},error => {
+  console.log("Something Wrong With The Response ==>  ", error);
+  ElNotification.error(error.message)
+  return Promise.reject(error.message);
 })
 
 export default{

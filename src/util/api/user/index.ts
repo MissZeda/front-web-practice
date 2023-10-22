@@ -1,20 +1,17 @@
 import request from '../../request';
 
 export default {
-  login(data){
+  login(data:loginUser){
     return request.post("/login",data);
   },
-  hello(){
-    return request.get("/app/api/hello");
-  },
-  register(data){
+  register(data:registerUser){
     data.email = data.email.concat("@qq.com")
     return request.post("/app/api/register",data)
   },
   getUserInfo(){
-
+    return request.get("/user/api/userInfo")
   },
-  getMailCode(param){
+  getMailCode(param:string){
     return request.get("/app/api/code/"+param)
   }
 }

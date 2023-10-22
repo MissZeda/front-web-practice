@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import {ElMessage} from "element-plus";
 
 const routes = [
   {path: '/', name: 'Login', component: () => import('../views/Login.vue')},
-
+  {path: "/Index", name: "Index", component: () => import('../views/admin/Index.vue')},
 ]
 
 
@@ -15,7 +16,7 @@ router.beforeEach((to, from, next) => {
   if (to.path === '/Index') {
     if(!window.sessionStorage.getItem("token")){
       router.push("/");
-      alert("请登录")
+      ElMessage.error("请先登录")
     }
   } else {
     next()
