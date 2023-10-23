@@ -4,7 +4,7 @@ import {ElMessage} from "element-plus";
 const routes = [
   {path: '/', name: 'Login', component: () => import('../views/Login.vue')},
   {path: "/Index", name: "Index", component: () => import('../views/admin/Index.vue')},
-  {path: "/Index", name: "Index", component: () => import('../views/user/TestPage.vue')},
+  {path: "/TestPage", name: "TestPage", component: () => import('../views/TestPage.vue')},
 
 ]
 
