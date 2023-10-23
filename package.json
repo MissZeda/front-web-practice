@@ -20,6 +20,7 @@
     "vue3-recaptcha2": "^1.8.0"
   },
   "devDependencies": {
+    "@types/recaptcha2": "^1.3.3",
     "@vitejs/plugin-vue": "^4.2.3",
     "sass": "^1.69.4",
     "typescript": "^5.0.2",

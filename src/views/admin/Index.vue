@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import userApi from '../../util/api/user/index.ts'
+import userApi from '../../api/user/index.ts'
 
 async function getUserInfo(){
   const res = await userApi.getUserInfo();

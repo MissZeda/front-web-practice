@@ -22,6 +22,7 @@ request.interceptors.request.use(config => {
 request.interceptors.response.use(res => {
   if(res.data.code===50001){
     ElNotification.error(res.data.msg)
+
     return Promise.reject(res.data.msg);
   }
     return res.data;
