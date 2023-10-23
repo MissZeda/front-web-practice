@@ -2,7 +2,7 @@
 import {reactive, ref} from "vue";
 import userApi from '../util/api/user/index.ts'
 import {ElMessage, ElNotification} from 'element-plus'
-import {useRouter} from "vue-router";
+
 import router from "../router";
 // 登录信息
 const user = reactive<loginUser>({})
@@ -110,10 +110,16 @@ async function getMailCode(){
 // 界面切换
 const loginVisible = ref<boolean>(true)
 const registerVisible = ref<boolean>(false)
+
+
+
 </script>
 
 <template>
 <div class="container">
+
+
+
 <!--  登录表单样式-->
   <div>
     <transition name="el-zoom-in-top">
@@ -143,6 +149,7 @@ const registerVisible = ref<boolean>(false)
           <div>
             <el-row :justify="'center'">
               <el-button style="background-color: #723dbd;color: white;width: 200px" size="large" @click="login">登录</el-button>
+
             </el-row>
             <el-row :justify="'center'">
               <el-text style="padding-top: 20px;" type="info">你还没有账号？</el-text>
@@ -226,6 +233,17 @@ const registerVisible = ref<boolean>(false)
 
 <style lang="scss" scoped>
 .container{
+  .overlay{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   background-image: url("../assets/background.svg");
   height: 100vh;
   background-color: #ededed;
