@@ -14,5 +14,21 @@ interface registerUser {
 }
 
 interface user{
-
+  accountNonExpired:boolean,
+  accountNonLocked:boolean,
+  authorities:Array<any>,
+  avatar:string,
+  createTime:string,
+  credentialsNonExpired:boolean,
+  delFlag:number,
+  email:string,
+  id:number,
+  nickName:string,
+  password:string,
+  phonenumber:string,
+  sex:number,
+  status:number,
+  userName:string,
+  userType:number,
+  username:string
 }

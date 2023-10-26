@@ -1,0 +1,38 @@
+html.dark {
+  /* 自定义深色背景颜色 */
+  background-color: #0A0A0A;
+  :is(span) {color: #dadada
+  }
+  .logo{
+    background-color: #000000;
+    border-right: 1px solid #4c4d4f;
+    .emit-box{
+      .el-image{
+        filter: brightness(1.2);
+      width: 220px;
+        height: 40px;
+      }
+    }
+  }
+  .header{
+    background-color: black;
+    border-bottom: 1px solid #4c4d4f;
+  }
+}
+
+html.light{
+  .logo{
+    background-color: #ffffff;
+    border-right: 1px solid #dcdfe6;
+    .emit-box{
+      .el-image{
+        width: 220px;
+        height: 40px;
+
+      }
+    }
+  }
+  .header{
+    border-bottom: 1px solid #dcdfe6;
+  }
+}

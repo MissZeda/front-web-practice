@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import {onMounted, reactive, ref} from "vue";
+import {onMounted, reactive, ref, toRefs} from "vue";
 import userApi from '../api/user/index.ts'
 import {ElMessage, ElNotification} from 'element-plus'
 
@@ -107,10 +107,11 @@ const registerVisible = ref<boolean>(false)
 
 
 import verificationApi from '../api/verification/index.ts'
+import {useUserStore} from "../pinia/store.ts";
 
 
-const siteKey = ref("6LfaesIoAAAAACnFH_Soe-0gA-oewDyxjx20WkgF"); // 替换为你的 reCAPTCHA site key
-const secureKey = ref('6LfaesIoAAAAAKigGHN62SYsXjPyLDNFHHXGW_yU'); // 替换为你的 reCAPTCHA secure key
+const siteKey = ref<string>("6LfaesIoAAAAACnFH_Soe-0gA-oewDyxjx20WkgF");
+const secureKey = ref<string>('6LfaesIoAAAAAKigGHN62SYsXjPyLDNFHHXGW_yU');
 
 const verificationData = reactive<VerificationType>({});
 const loginCodeVisible = ref<boolean>(false)
@@ -129,11 +130,19 @@ async function loginSubmit(token: string) {
       message: '登录成功,即将为你跳转到主界面',
       showClose: false,
     })
+    await getUserInfo()
     loginCodeVisible.value = false;
-    router.push("/Index")
+    await router.push("/manage/home")
   }
 }
 
+const userStore =useUserStore()
+const getUserInfo = async () => {
+  const res = await userApi.getUserInfo();
+  userStore.$patch(state=>{
+    state.user.value = res.data.user
+  })
+}
 
 function loginloaded() {
   setTimeout(() => {
@@ -152,11 +161,12 @@ onMounted(() => {
 
 <template>
   <div class="container">
-
-
     <!--  登录表单样式-->
     <div>
-      <transition name="el-zoom-in-top">
+      <transition
+        enter-active-class="animate__animated animate__flipInX  animate__delay-1s"
+        leave-active-class="animate__animated animate__flipOutX"
+      >
         <div v-show="loginVisible">
           <div class="login-form">
 
@@ -204,7 +214,12 @@ onMounted(() => {
     <!--登录表单样式end-->
 
     <div>
-      <transition name="el-zoom-in-bottom">
+      <transition
+        enter-active-class="animate__animated animate__flipInX animate__delay-1s"
+        leave-active-class="animate__animated animate__flipOutX "
+        enter-class="animate__delay-1s"
+        leave-class="animate__delay-1s"
+      >
         <div v-show="registerVisible">
           <div>
             <div class="login-form">
