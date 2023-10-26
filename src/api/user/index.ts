@@ -13,5 +13,11 @@ export default {
   },
   getMailCode(param:string){
     return request.get("/app/api/code/"+param)
+  },
+  getUserList(pageInfo:pageInfo){
+    return request.get("/admin/api/user/list",pageInfo)
+  },
+  queryUserMenu(param){
+    return request.get("/user/api/queryUserMenu?id="+param)
   }
 }

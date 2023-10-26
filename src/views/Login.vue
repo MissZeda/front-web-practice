@@ -132,7 +132,7 @@ async function loginSubmit(token: string) {
     })
     await getUserInfo()
     loginCodeVisible.value = false;
-    await router.push("/manage/home")
+    await router.push("/home/index")
   }
 }
 

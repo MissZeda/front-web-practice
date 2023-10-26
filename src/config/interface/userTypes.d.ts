@@ -32,3 +32,8 @@ interface user{
   userType:number,
   username:string
 }
+
+interface  pageInfo{
+  pageNum ?:string,
+  pageSize ?:string
+}

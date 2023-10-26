@@ -33,7 +33,7 @@ watch(route, (to) => {
 <template>
   <div>
     <el-breadcrumb :separator-icon="ArrowRight">
-      <el-breadcrumb-item :to="{ path: '/manage/home' }">首页</el-breadcrumb-item>
+      <el-breadcrumb-item :to="{ path: '/home/index' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item v-for="crumb in breadcrumbs" :key="crumb.to">
         <el-breadcrumb-item :to="crumb.to" >{{ crumb.text }}</el-breadcrumb-item>
       </el-breadcrumb-item>

@@ -15,7 +15,6 @@ html.dark {
     }
   }
   .header{
-    background-color: black;
     border-bottom: 1px solid #4c4d4f;
   }
 }
@@ -34,5 +33,6 @@ html.light{
   }
   .header{
     border-bottom: 1px solid #dcdfe6;
+
   }
 }

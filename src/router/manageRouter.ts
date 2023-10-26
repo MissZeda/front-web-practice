@@ -6,8 +6,10 @@ const manageRouter = { // 管理端
   name: '管理',
   component: () => import('../layout/AppLayout.vue'),
   children:[
-    {path: 'home', name: '主目录', component:()=>import('../manager/Home/Home.vue'),meta:{title:'主目录',icon:'House',breadcrumb:"主目录"},
-
+    {path: '/home', name: '主目录', component:RouterView,meta:{title:'主目录',icon:'House',breadcrumb:"主目录"},
+      children: [
+        {path:'index',name:'用户家目录',component:()=>import('../manager/Home/Home.vue'),breadcrumb:"用户家目录"},
+      ]
     },
     {path: '/user', name: '用户中心', component:  RouterView,meta:{icon:'User',breadcrumb:"用户中心"},
       children:[
@@ -17,6 +19,11 @@ const manageRouter = { // 管理端
     {path: '/device', name: '设备中心', component:  RouterView,meta:{icon:'Iphone',breadcrumb:"设备中心"},
       children:[
         {path:'deviceManage',name:'设备管理',component:()=>import('../manager/DeviceManage/DeviceManage.vue'),meta: {breadcrumb:"设备管理"}},
+      ]
+    },
+    {path: '/Interface', name: '后端接口', component:  RouterView,meta:{icon:'Cherry',breadcrumb:"接口"},
+      children: [
+        {path:'interfaceManage',name:'接口管理',component:()=>import('../manager/InterfaceManage/InterfaceManage.vue'),meta: {breadcrumb:"接口管理"}},
       ]
     },
     {path: '/data', name: '数据看板', component:  RouterView,meta:{icon:'DataAnalysis',breadcrumb:"数据看板"},
@@ -34,6 +41,7 @@ const manageRouter = { // 管理端
         {path:'userIndex',name:'个人中心',component:()=>import('../manager/UserCenter/UserIndex.vue'),meta: {breadcrumb:"个人中心"}},
       ]
     },
+
   ]
 }
 export default manageRouter

@@ -5,6 +5,7 @@ import {Fold} from '@element-plus/icons-vue';
 import AppHeader from "../components/AppHeader.vue";
 import AppHeaderBreadcrumb from "../components/AppHeaderBreadcrumb.vue";
 
+
 let isCollapse= ref(false)
 const toggle = ():void=>{
   isCollapse.value = !isCollapse.value
@@ -15,7 +16,7 @@ const toggle = ():void=>{
 <template>
   <div class="common-layout">
     <el-container class="container">
-      <el-aside class="aside" :style="{'width':(isCollapse?'63px':'230px')}">
+      <el-aside class="aside" :style="{'width':(isCollapse?'65px':'260px')}">
         <AppMenu :isCollapse="isCollapse"/>
       </el-aside>
       <el-container>
@@ -31,6 +32,7 @@ const toggle = ():void=>{
               <div style="padding-top: 18px">
                 <AppHeaderBreadcrumb></AppHeaderBreadcrumb>
               </div>
+
             </el-col>
             <el-col :span="12" :offset="5">
               <app-header>
@@ -55,7 +57,6 @@ const toggle = ():void=>{
   }
   .header{
     height:55px;
-
   }
   .main{
     .card-box{
